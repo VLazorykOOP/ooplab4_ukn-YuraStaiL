@@ -343,3 +343,84 @@ VectorDouble& VectorDouble::operator/=(const float& b) {
 }
 
 
+VectorDouble& VectorDouble::operator/(const  VectorDouble& b)
+{
+	if (num != b.num) { std::cout << " Error : vectors of different sizes are used in operation %= \n"; return *this; }
+	for (int i = 0; i < num; i++) vec[i] /= b.vec[i];
+	return *this;
+}
+VectorDouble VectorDouble::operator/(const double& b) {
+	VectorDouble rez(*this);
+	VectorDouble tmp;
+	if (b == 0) {
+		tmp.state = BAD_DIV;
+		cout << "Eror BAD_DIV" << endl;
+		return rez;
+	}
+	rez /= b;
+	return rez;
+	return tmp;
+}
+VectorDouble VectorDouble::operator/(const float& b) {
+	VectorDouble rez(*this);
+	VectorDouble tmp;
+	if (b == 0) {
+		tmp.state = BAD_DIV;
+		cout << "Eror BAD_DIV" << endl;
+		return rez;
+	}
+	rez /= b;
+	return rez;
+	return tmp;
+}
+bool VectorDouble::operator>(const VectorDouble& s) {
+	for (int i = 0; i < num; i++) {
+		if (vec[i] > s.vec[i])
+			return true;
+	}
+	return false;
+}
+bool VectorDouble::operator>=(const VectorDouble& s) {
+	for (int i = 0; i < num; i++) {
+		if (vec[i] >= s.vec[i])
+			return true;
+	}
+	return false;
+}
+bool VectorDouble::operator<(const VectorDouble& s) {
+	for (int i = 0; i < num; i++) {
+		if (vec[i] < s.vec[i])
+			return true;
+	}
+	return false;
+}
+bool VectorDouble::operator<=(const VectorDouble& s) {
+	for (int i = 0; i < num; i++) {
+		if (vec[i] <= s.vec[i])
+			return true;
+	}
+	return false;
+}
+//--------------------------------------------------------------------------------------------------------------------------
+void task1() {
+	system("chcp 1251");
+	VectorDouble vector1(8);
+	VectorDouble vector2(2, 7);
+	VectorDouble vector3(2, 11.4);
+	VectorDouble vector4(6, 0);
+	VectorDouble vectorcopy(vector2);
+	float y = 2.5;
+	double x = 1.9;
+	cout << "Task1:   VectorDouble:" << endl;
+	cout << vector1;
+	cout << vector2;
+	cout << vector3;
+	cout << "Операції:" << endl;
+	cout << "***Перевантаження ++:" << endl << endl;
+	cout << (++vector2) << endl;
+	cout << "***Перевантаження vector + vector:" << endl << endl;
+	vector2 += vector2;
+
+	
+}
+//*************************************************************************************************************
