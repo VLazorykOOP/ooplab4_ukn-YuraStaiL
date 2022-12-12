@@ -420,7 +420,33 @@ void task1() {
 	cout << (++vector2) << endl;
 	cout << "***Перевантаження vector + vector:" << endl << endl;
 	vector2 += vector2;
-
+	cout << vector2 << endl;
+	cout << "***Перевантаження vector +double:" << endl << endl;
+	vector2 += x;
+	cout << vector2 << endl;
+	cout << "***Перевантаження vector + float:" << endl << endl;
+	vector2 += y;
+	cout << vector2 << endl;
+	cout << "***Перевантаження --:" << endl << endl;
+	cout << (--vector2) << endl;
+	cout << "***Перевантаження vector - double:" << endl << endl;
+	vector2 -= x;
+	cout << vector2 << endl;
+	cout << "***Перевантаження vector - float:" << endl << endl;
+	vector2 -= y;
+	cout << vector2 << endl;
+	cout << "***Перевантаження vector - vector:" << endl << endl;
+	vector2 -= vector3;
+	cout << vector2 << endl;
+	cout << "***Перевантаження vector * vector:" << endl << endl;
+	vector2 *= vector3;
+	cout << vector2 << endl;
+	cout << "***Перевантаження vector / vector:" << endl << endl;
+	vector2 /= vector3;
+	cout << vector2 << endl;
+	cout << "***Перевантаження vector * 0:" << endl << endl;
+	vector2 *= 1.5;
+	cout << vector2 << endl;
 	
 }
 //*************************************************************************************************************
