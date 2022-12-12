@@ -796,5 +796,78 @@ bool MatrixDouble::operator<=(const MatrixDouble& s) {
 	return false;
 }
 
+void task2() {
+	system("chcp 1251");
+	MatrixDouble A(3);
+	MatrixDouble B(3, 3);
+	MatrixDouble C(3, 3, 9);
+	MatrixDouble D(3, 3, 1.9);
+	MatrixDouble E(3, 3, 9);
+	MatrixDouble matrixcopy(C);
+	VectorDouble vector1(3, 7);
+	VectorDouble vector2(3);
+	double value = 1.7;
+	cout << "Task2 MatrixDouble : " << endl;
+	cout << "A" << endl << A << endl;
+	cout << "B" << endl << B << endl;
+	cout << "C" << endl << C << endl;
+	cout << "D" << endl << D << endl;
+	cout << "Вектор" << endl << vector1 << endl;
+	cout << "Операції:" << endl;
+	cout << "***Перевантаження ++::" << endl;
+	cout << (++C);
+	cout << "***Перевантаження -- :" << endl;
+	cout << (--C);
+	cout << "***Перевантаження matrix + matrix :" << endl;
+	C += D;
+	cout << C;
+	cout << "***Перевантаження matrix + double :" << endl;
+	C += value;
+	cout << C;
+	cout << "***Перевантаження matrix - double :" << endl;
+	C -= value;
+	cout << C;
+	cout << "***Перевантаження matrix - matrix :" << endl;
+	C -= D;
+	cout << C;
+	cout << "***Перевантаження matix * matrix :" << endl;
+	C = C * D;
+	cout << C;
+	cout << "***Перевантаження matrix * double :" << endl;
+	C *= value;
+	cout << C;
+	cout << "***Перевантаження matrix * 0:" << endl;
+	C *= 0.0;
+	cout << C;
+	cout << "***Перевантаження matrix / double :" << endl;
+	C /= value;
+	cout << C;
+	cout << "***Перевантаження matrix / 0 :" << endl;
+	C /= 0.0;
+	cout << C;
+	cout << "Вираз 1" << endl;
+	cout << "C = C + D  - B  + C / 7 : " << endl;
+	C = (C + D - B + C) / 7.0;
+	cout << C;
+}
+
+int main() {
+	system("chcp 1251");
+	int task = 0;
+Select:
+	cout << "Виберіть завдання:(1 або 2) " << endl;
+	cin >> task;
+	switch (task)
+	{
+	case 1:
+		task1();
+		break;
+
+	case 2:task2();
+		break;
+
+		//case 3:task3(); break;
+	}
+
 
 }
