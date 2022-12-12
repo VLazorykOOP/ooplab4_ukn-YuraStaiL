@@ -627,3 +627,174 @@ MatrixDouble  MatrixDouble::operator+(const float& b) {
 	mat += b;
 	return mat;
 }
+MatrixDouble& MatrixDouble::operator-=(const MatrixDouble& s) {
+	if (s.n == n) for (int i = 0; i < n; i++) arr[i] -= s.arr[i];
+	else {
+		cout << "Error: matrices of different dimensions \n";
+		cout << "The -= operation was not performed. \n";
+	}
+	return *this;
+}
+MatrixDouble& MatrixDouble::operator-=(const double& b) {
+	for (int i = 0; i < n; i++) arr[i] -= b;
+	return *this;
+}
+MatrixDouble& MatrixDouble::operator-=(const float& b) {
+	for (int i = 0; i < n; i++) arr[i] -= b;
+	return *this;
+}
+MatrixDouble  MatrixDouble::operator-(const MatrixDouble& b) {
+	MatrixDouble mat(*this);
+	mat -= b;
+	return mat;
+}
+MatrixDouble  MatrixDouble::operator-(const double& b) {
+	MatrixDouble mat(*this);
+	mat -= b;
+	return mat;
+}
+MatrixDouble  MatrixDouble::operator-(const float& b) {
+	MatrixDouble mat(*this);
+	mat -= b;
+	return mat;
+}
+MatrixDouble& MatrixDouble::operator*=(const double& b) {
+	MatrixDouble tmp;
+	if (b == 0) {
+		tmp.state = BAD_MULTIPLY;
+		cout << "Error Multiply" << endl;
+		return *this;
+	}
+	else for (int i = 0; i < n; i++) arr[i] *= b;
+	return *this;
+	return tmp;
+}
+MatrixDouble& MatrixDouble::operator*=(const float& b) {
+	MatrixDouble tmp;
+	if (b == 0) {
+		tmp.state = BAD_MULTIPLY;
+		cout << "Error Multiply" << endl;
+		return *this;
+	}
+	else for (int i = 0; i < n; i++) arr[i] *= b;
+	return *this;
+	return tmp;
+}
+MatrixDouble  MatrixDouble::operator*(const MatrixDouble& b) {
+	if (n == b.m && m == b.m) {
+		MatrixDouble ret(m, n);
+		for (int i = 0; i < n; i++)
+			for (int j = 0; j < m; j++)
+			{
+				ret[i][j] = 0;
+				for (int l = 0; l < m; l++) ret[i][j] += arr[i][l] * b.arr[l][j];
+			}
+		return ret;
+	}
+	else {
+		cout << "Error: matrices of different dimensions \n";
+		cout << "The *  operation was not performed. \n";
+		return *this;
+	}
+}
+MatrixDouble  MatrixDouble::operator*(const float& b) {
+	MatrixDouble mat(*this);
+	MatrixDouble tmp;
+	if (b == 0) {
+		tmp.state = BAD_MULTIPLY;
+		cout << "Error Multiply" << endl;
+		return mat;
+	}
+	else mat *= b;
+	return mat;
+	return tmp;
+}
+MatrixDouble& MatrixDouble::operator/=(const double& b) {
+	MatrixDouble tmp;
+	if (b == 0)
+	{
+		tmp.state = BAD_DIV;
+		cout << "Eror BAD_DIV" << endl;
+		return *this;
+	}
+	else for (int i = 0; i < n; i++) arr[i] /= b;
+	return *this;
+	return tmp;
+}
+MatrixDouble& MatrixDouble::operator/=(const float& b) {
+	MatrixDouble tmp;
+	if (b == 0)
+	{
+		tmp.state = BAD_DIV;
+		cout << "Eror BAD_DIV" << endl;
+		return *this;
+	}
+	else for (int i = 0; i < n; i++) arr[i] /= b;
+	return *this;
+	return tmp;
+}
+MatrixDouble  MatrixDouble::operator/(const double& b) {
+	MatrixDouble mat(*this);
+	MatrixDouble tmp;
+	if (b == 0)
+	{
+		tmp.state = BAD_DIV;
+		cout << "Eror BAD_DIV" << endl;
+		return mat;
+	}
+	else for (int i = 0; i < n; i++) arr[i] /= b;
+	return mat;
+	return tmp;
+}
+MatrixDouble  MatrixDouble::operator/(const float& b) {
+	MatrixDouble mat(*this);
+	MatrixDouble tmp;
+	if (b == 0)
+	{
+		tmp.state = BAD_DIV;
+		cout << "Eror BAD_DIV" << endl;
+		return mat;
+	}
+	else for (int i = 0; i < n; i++) arr[i] /= b;
+	return mat;
+	return tmp;
+}
+bool MatrixDouble::operator>(const  MatrixDouble& s) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (arr[i][j] > s.arr[i][j])
+				return true;
+		}
+	}
+	return false;
+}
+bool MatrixDouble::operator>=(const MatrixDouble& s) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (arr[i][j] >= s.arr[i][j])
+				return true;
+		}
+	}
+	return false;
+}
+bool MatrixDouble::operator<(const  MatrixDouble& s) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (arr[i][j] < s.arr[i][j])
+				return true;
+		}
+	}
+	return false;
+}
+bool MatrixDouble::operator<=(const MatrixDouble& s) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			if (arr[i][j] >= s.arr[i][j])
+				return true;
+		}
+	}
+	return false;
+}
+
+
+}
