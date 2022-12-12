@@ -450,3 +450,180 @@ void task1() {
 	
 }
 //*************************************************************************************************************
+//       Друге завдання
+class MatrixDouble {
+private:
+	VectorDouble* arr = nullptr;
+	int n = 1;
+	int m = 1;
+	int state = 0;
+public:
+	MatrixDouble() :arr(nullptr), n(0), m(0), state(0) {}
+	MatrixDouble(int n) :MatrixDouble(n, n) {};
+	MatrixDouble(int n, int m) :MatrixDouble(n, m, 0) {};
+	MatrixDouble(int n, int m, float);
+	MatrixDouble(const MatrixDouble& s);
+	MatrixDouble& operator=(const MatrixDouble& s);
+	MatrixDouble& operator=(MatrixDouble&& s) noexcept;
+	~MatrixDouble() {
+		if (arr) delete[] arr;
+	}
+	friend istream& operator>>(istream& is, MatrixDouble& s);
+	friend ostream& operator<<(ostream& os, MatrixDouble& s);
+	VectorDouble& operator[](int index);
+	MatrixDouble& operator++();
+	MatrixDouble& operator--();
+
+	MatrixDouble& operator+=(const MatrixDouble& s);
+	MatrixDouble& operator+=(const float& b);
+	MatrixDouble  operator+(const MatrixDouble& b);
+	MatrixDouble  operator+(const double& b);
+	MatrixDouble  operator+(const float& b);
+
+	MatrixDouble& operator-=(const MatrixDouble& s);
+	MatrixDouble& operator-=(const double& b);
+	MatrixDouble& operator-=(const float& b);
+	MatrixDouble  operator-(const MatrixDouble& b);
+	MatrixDouble  operator-(const double& b);
+	MatrixDouble  operator-(const float& b);
+
+
+	MatrixDouble& operator*=(const double& b);
+	MatrixDouble& operator*=(const float& b);
+	MatrixDouble operator*(const MatrixDouble& b);
+	MatrixDouble operator*(const float& b);
+
+
+	MatrixDouble& operator/=(const double& b);
+	MatrixDouble& operator/=(const float& b);
+	MatrixDouble operator/(const double& b);
+	MatrixDouble operator/(const float& b);
+
+	bool operator>(const  MatrixDouble& s);
+	bool operator>=(const MatrixDouble& s);
+	bool operator<(const  MatrixDouble& s);
+	bool operator<=(const MatrixDouble& s);
+
+	int getState() {
+		return state;
+	}
+};
+MatrixDouble::MatrixDouble(int ni, int mi, float b)
+{
+	if (ni <= 0) n = 1; else n = ni;
+	if (mi <= 0) m = 1; else m = mi;
+	arr = new VectorDouble[n];
+	for (int i = 0; i < n; i++) arr[i].Init(m, b);
+}
+
+MatrixDouble::MatrixDouble(const MatrixDouble& s)
+{
+	n = s.n;
+	m = s.m;
+	int i;
+	arr = new VectorDouble[n];
+	for (i = 0; i < n; i++) arr[i].Init(m, 0);
+	for (i = 0; i < n; i++)
+		for (int j = 0; j < m; j++)  arr[i][j] = s.arr[i][j];
+
+}
+
+MatrixDouble& MatrixDouble::operator=(const MatrixDouble& s)
+{
+	if (this != &s) {
+		int i;
+		if (n != s.n || m != s.m) {
+			n = s.n; m = s.m;
+			if (arr != nullptr) {
+				delete[] arr;
+			}
+			arr = new VectorDouble[n];
+			for (i = 0; i < n; i++) arr[i].Init(m, 0);
+		}
+		for (i = 0; i < n; i++)
+			for (int j = 0; j < m; j++)  arr[i][j] = s.arr[i][j];
+
+	}
+	return *this;
+}
+VectorDouble& MatrixDouble::operator[](int index)
+{
+	if (index >= 0 && index < n) return arr[index];
+	cout << " Error : operator[] - index index out of range \n";
+	return arr[0];
+}
+
+MatrixDouble& MatrixDouble::operator=(MatrixDouble&& s) noexcept
+{
+	n = s.n; m = s.m;
+	arr = s.arr;
+	s.arr = nullptr;
+	s.n = 0; s.m = 0;
+	return *this;
+}
+istream& operator>>(istream& is, MatrixDouble& s)
+{
+	for (int i = 0; i < s.n; i++) is >> s.arr[i];
+	return is;
+}
+
+ostream& operator<<(ostream& os, MatrixDouble& s)
+{
+	for (int i = 0; i < s.n; i++) os << s.arr[i];  // << endl;
+	return os;
+}
+MatrixDouble& MatrixDouble::operator++() {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			arr[i][j] += 1;
+		}
+	}
+	return *this;
+}
+MatrixDouble& MatrixDouble::operator--() {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			arr[i][j] -= 1;
+		}
+	}
+	return *this;
+}
+MatrixDouble& MatrixDouble::operator+=(const MatrixDouble& s) {
+	if (s.n == n) for (int i = 0; i < n; i++) arr[i] += s.arr[i];
+	else {
+		cout << "Error: matrices of different dimensions \n";
+		cout << "The += operation was not performed. \n";
+	}
+	return *this;
+}
+
+MatrixDouble& MatrixDouble::operator+=(const float& b) {
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < m; j++) {
+			arr[i][j] += b;
+		}
+	}
+	return *this;
+}
+MatrixDouble  MatrixDouble::operator+(const MatrixDouble& b) {
+	MatrixDouble mat(*this);
+	if (b.n == n) {
+		mat += b;
+	}
+	else
+	{
+		cout << "Error: matrices of different dimensions \n";
+		cout << "The += operation was not performed. \n";
+	}
+	return mat;
+}
+MatrixDouble  MatrixDouble::operator+(const double& b) {
+	MatrixDouble mat(*this);
+	mat += b;
+	return mat;
+}
+MatrixDouble  MatrixDouble::operator+(const float& b) {
+	MatrixDouble mat(*this);
+	mat += b;
+	return mat;
+}
