@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ALL_TASKS.cpp" />
     <ClCompile Include="ComplexMatrix.cpp" />
     <ClCompile Include="ComplexVector.cpp" />
     <ClCompile Include="Lab4Exmaple.cpp" />

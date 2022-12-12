@@ -30,6 +30,9 @@
     <ClCompile Include="Lab4Exmaple.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="ALL_TASKS.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Lab4Exmaple.h">
